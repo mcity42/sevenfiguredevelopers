@@ -36,8 +36,8 @@ public class SevenFigureDeveloperApp {
         }
     }
 
-    private int promptForDifficulty() {
-        int difficulty = 0;
+    private void promptForDifficulty() {
+        int difficulty;
         System.out.println("Press 1 for easy, 2 for intermediate, 3 for hard");
         difficulty = Integer.parseInt(scanner.nextLine());
         switch (difficulty) {
@@ -47,24 +47,21 @@ public class SevenFigureDeveloperApp {
                     break;
             case 3: maxLevel = 15;
         }
-        return difficulty;
     }
 
 
-    private Question findNextQuestion() {
+    private void findNextQuestion() {
         Question nextQuestion = null;
         while (isPlaying) {
             if (maxLevel == 15) {
-                while (isPlaying) {
                     for (Question question : questionDB.getQuestionDatabase()) {
                         nextQuestion = question;
                         nextQuestion.askQuestions();
                         checkAnswer(question);
                     }
-                }
             }
             else if (maxLevel == 10) {
-                while (isPlaying && user.getCurrentLevel() < 11) {
+                while (user.getCurrentLevel() < 11) {
                     for (Question question : questionDB.getQuestionDatabase()) {
                         nextQuestion = question;
                         nextQuestion.askQuestions();
@@ -73,7 +70,7 @@ public class SevenFigureDeveloperApp {
                 }
             }
             else if (maxLevel == 5) {
-                while (isPlaying && user.getCurrentLevel() < 6) {
+                while (user.getCurrentLevel() < 6) {
                     for (Question question : questionDB.getQuestionDatabase()) {
                         nextQuestion = question;
                         nextQuestion.askQuestions();
@@ -82,7 +79,6 @@ public class SevenFigureDeveloperApp {
                 }
             }
         }
-        return nextQuestion;
     }
 
 
@@ -92,7 +88,7 @@ public class SevenFigureDeveloperApp {
             System.out.println("Choose A, B, C, or D.");
             String input = scanner.nextLine();
             String answer = input.toUpperCase();
-            if (answer == "A" || answer == "B" || answer == "C" || answer == "D") {
+            if (answer.equals("A") || answer.equals("B") || answer.equals("C") || answer.equals("D")) {
                 isValid = true;
                 if (question.getAnswer().equals(input)) {
                     System.out.println(question.getAnswer() + " is Correct!!!");

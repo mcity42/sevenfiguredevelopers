@@ -12,7 +12,7 @@ public class QuestionDB  {
             new Question(1, Difficulty.EASY, "What is a class? \n A: the \"blueprint\" " +
                     "when creating objects. \n B. An integer \n C. size of variable \n D. constructor  " , "A"),
             new Question(2, Difficulty.EASY, "What is the lowest amount of constructors an object can have? " +
-                    "\n A: 1 \n B: 0 \n C: 2 \n D: 3", "B"),
+                    "\n A: 1 \n B: 0 \n C: 2 \n D: 3", "A"),
             new Question(3, Difficulty.EASY, "Which statement is not true in java language?\n" +
                     "\n" +
                     "(a) A public member of a class can be accessed in all the packages.\n" +
@@ -54,6 +54,4 @@ public class QuestionDB  {
     public List<Question> getQuestionDatabase() {
         return questionDatabase;
     }
-
-
 }

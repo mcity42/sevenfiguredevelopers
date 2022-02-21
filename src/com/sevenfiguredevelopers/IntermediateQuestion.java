@@ -4,7 +4,6 @@ import java.util.Map;
 
 public class IntermediateQuestion extends Question {
     // attributes
-    private int dollarAmount = 200_000;
     private Difficulty intermediateStage = Difficulty.MEDIUM;
 
 

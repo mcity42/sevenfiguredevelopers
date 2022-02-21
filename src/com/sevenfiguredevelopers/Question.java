@@ -26,6 +26,10 @@ public class Question {
         return getQuestionWithChoice();
     }
 
+    public Boolean checkAnswer(String userAnswer) {
+        return getAnswer().equals(userAnswer);
+    }
+
     // Getter and Setter
     public int getId() {
         return id;

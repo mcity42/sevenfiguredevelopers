@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class EasyQuestion extends Question {
     // attributes
-    private int dollarAmount = 150_000;
+
     private Difficulty easyStage = Difficulty.EASY;
 
     public EasyQuestion(int id, Difficulty difficulty, String questionWithChoice, String answer) {

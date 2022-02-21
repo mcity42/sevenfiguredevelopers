@@ -1,9 +1,11 @@
 package com.sevenfiguredevelopers;
 
+import com.sevenfiguredevelopers.controller.SevenFigureDeveloperApp;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionDB {
+public class QuestionDB  {
 
     private List<Question> questionDatabase = new ArrayList<>(List.of (
             // id     difficulty     question         answer
@@ -48,4 +50,8 @@ public class QuestionDB {
                     "(c) In java language objects have to be manipulated\n" +
                     "(d) In java language error processing is built into the language", "D")
     ));
+
+    public List<Question> getQuestionDatabase() {
+        return questionDatabase;
+    }
 }

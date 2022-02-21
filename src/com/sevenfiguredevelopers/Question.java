@@ -1,6 +1,9 @@
 package com.sevenfiguredevelopers;
 
+import com.apps.util.Prompter;
+
 import java.util.Map;
+import java.util.Scanner;
 
 public class Question {
     private int id;
@@ -8,6 +11,7 @@ public class Question {
     private String questionWithChoice;
     private String answer;
     Map<String, String> databaseQA;
+
 
     // ctor
 
@@ -25,6 +29,22 @@ public class Question {
     public String askQuestions() {
         System.out.println(getQuestionWithChoice());
         return getQuestionWithChoice();
+    }
+
+    public boolean checkAnswer(String answer) {
+        boolean isCorrect = false;
+
+        if (this.getAnswer().equals(answer)) {
+            System.out.println(this.getAnswer() + " is Correct!!!");
+            System.out.println("This question was worth: " + this.getDifficulty().getDollarAmount());
+            isCorrect = true;
+//            user.setEarnings(this.getDifficulty().getDollarAmount() + user.getEarnings());
+//            user.setCurrentLevel(user.getCurrentLevel() + 1);
+        }
+        else if (! this.getAnswer().equals(answer) ){
+            System.out.println("Ouch! Good try but the correct answer is " + this.getAnswer());
+        }
+        return isCorrect;
     }
 
     // Getter and Setter

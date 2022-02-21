@@ -1,5 +1,6 @@
 package com.sevenfiguredevelopers.controller;
 
+import com.apps.util.Prompter;
 import com.sevenfiguredevelopers.Question;
 import com.sevenfiguredevelopers.QuestionDB;
 import com.sevenfiguredevelopers.User;
@@ -11,8 +12,8 @@ public class SevenFigureDeveloperApp {
     private Boolean isPlaying = false;  // not playing yet
     private int maxLevel = 15;    // default
     QuestionDB questionDB = new QuestionDB();
-
-    private Scanner scanner = new Scanner(System.in);
+    Prompter prompter = new Prompter(new Scanner(System.in));
+    //private Scanner scanner = new Scanner(System.in);
     User user = new User();
 // **populateQuestionsList here either with method or loop through a file we write**
 
@@ -21,25 +22,22 @@ public class SevenFigureDeveloperApp {
         isPlaying = true;
         promptForDifficulty();
         findNextQuestion();
+
     }
 
 
     private void promptForName() {
         user.setName(null);
         boolean isValid = false;
-        while (!isValid) {
-            System.out.println("Contestant, please enter your first name: ");
-            String input = scanner.nextLine();
-            // if regex check here for valid
-            user.setName(input);
-            isValid = true;
-        }
+        String input = prompter.prompt("Enter your name: ", "\\w", "Invalid name");
+       // String input =
+        user.setName(input);
     }
 
     private void promptForDifficulty() {
         int difficulty;
-        System.out.println("Press 1 for easy, 2 for intermediate, 3 for hard");
-        difficulty = Integer.parseInt(scanner.nextLine());
+        String input = prompter.prompt("Select 1 for easy, 2 for intermediate, 3 for hard: ", "1|2|3", "Invalid selection");
+        difficulty = Integer.parseInt(input);
         switch (difficulty) {
             case 1: maxLevel = 5;
                     break;
@@ -52,58 +50,74 @@ public class SevenFigureDeveloperApp {
 
     private void findNextQuestion() {
         Question nextQuestion = null;
-        while (isPlaying) {
-            if (maxLevel == 15) {
-                    for (Question question : questionDB.getQuestionDatabase()) {
-                        nextQuestion = question;
-                        nextQuestion.askQuestions();
-                        checkAnswer(question);
-                    }
+        if (maxLevel == 15) {
+            for (Question question : questionDB.getQuestionDatabase()) {
+                if (isPlaying) {
+                    nextQuestion = question;
+                    nextQuestion.askQuestions();
+                    promptForAnswer(question);
+                    showWinnings(question);
+                    promptToContinue();
+                }
             }
-            else if (maxLevel == 10) {
-                while (user.getCurrentLevel() < 11) {
-                    for (Question question : questionDB.getQuestionDatabase()) {
+        }
+        if (maxLevel == 10) {
+            while (user.getCurrentLevel() < 11) {
+                for (Question question : questionDB.getQuestionDatabase()) {
+                    if (isPlaying) {
                         nextQuestion = question;
                         nextQuestion.askQuestions();
-                        checkAnswer(question);
+                        promptForAnswer(question);
+                        showWinnings(question);
+                        promptToContinue();
                     }
                 }
             }
-            else if (maxLevel == 5) {
-                while (user.getCurrentLevel() < 6) {
-                    for (Question question : questionDB.getQuestionDatabase()) {
-                        nextQuestion = question;
-                        nextQuestion.askQuestions();
-                        checkAnswer(question);
-                    }
+        }
+        for (int i = 0; i < 5; i++) {
+            // while (user.getCurrentLevel() < 6) {
+            for (Question question : questionDB.getQuestionDatabase()) {
+                if (isPlaying) {
+                    nextQuestion = question;
+                    nextQuestion.askQuestions();
+                    promptForAnswer(question);
+                    showWinnings(question);
+                    promptToContinue();
                 }
             }
         }
     }
 
 
-    private void checkAnswer(Question question) {
-        boolean isValid = false;
-        while (!isValid) {
-            System.out.println("Choose A, B, C, or D.");
-            String input = scanner.nextLine();
-            String answer = input.toUpperCase();
-            if (answer.equals("A") || answer.equals("B") || answer.equals("C") || answer.equals("D")) {
-                isValid = true;
-                if (question.getAnswer().equals(input)) {
-                    System.out.println(question.getAnswer() + " is Correct!!!");
-                    System.out.println("You won " + question.getDifficulty().getDollarAmount());
-                    user.setEarnings(question.getDifficulty().getDollarAmount() + user.getEarnings());
-                    user.setCurrentLevel(user.getCurrentLevel() + 1);
-                }
-                else {
-                    isPlaying = false;
-                    System.out.println("Ouch! Good try but the correct answer is " + question.getAnswer());
-                }
-            }
-            else {
-                System.out.println("Invalid choice. Please enter A, B, C, or D.");
-            }
-        }
+
+    private void promptForAnswer(Question question) {
+       // boolean isValid = false;
+        String input = prompter.prompt("Choose A, B, C, or D", "A|B|C|D|a|b|c|d", "Error, please enter A, B, C, or D");
+        isPlaying = question.checkAnswer(input);
+
     }
+
+
+    private boolean promptToContinue() {
+          boolean continuePlaying = isPlaying;
+          if (isPlaying) {
+              String input = prompter.prompt("Choose 1 to continue or 2 to exit with earnings.", "1|2", "Error, please enter 1 or 2.");
+              if (input.equals("1")) {
+                  continuePlaying = true;
+              }
+              else if (input.equals("2")) {
+                System.out.println("Great game you won: " + user.getEarnings());
+                continuePlaying = false;
+                isPlaying = false;
+              }
+          }
+          return continuePlaying;
+    }
+
+    private int showWinnings(Question question) {
+        int winnings = question.getDifficulty().getDollarAmount() + user.getEarnings();
+        user.setEarnings(winnings);
+        return winnings;
+    }
+
 }

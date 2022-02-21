@@ -3,12 +3,13 @@ package com.sevenfiguredevelopers.controller;
 import com.sevenfiguredevelopers.Question;
 import com.sevenfiguredevelopers.User;
 
+import java.util.*;
 import java.util.Scanner;
 
 class SevenFigureDeveloperApp {
     private Boolean isPlaying = false;  // not playing yet
     private int maxLevel = 15;    // default
-    private List<Question>() questionsList =new ArrayList<Question>(); //List of Questions
+    private List<Question> questionsList = new ArrayList<>(); //List of Questions
     private Scanner scanner = new Scanner(System.in);
     User user = new User();
 // **populateQuestionsList here either with method or loop through a file we write**
@@ -20,48 +21,7 @@ class SevenFigureDeveloperApp {
         findNextQuestion();
     }
 
-//
-//    promptForDifficulty();  // if input: 1 = easy, 2 = intermediate, 3 = hard
-//    isPlaying = true;
-//
-//    While (isPlaying)  {
-//        currentLevel++;
-//
-//
-//        switch (promptForDifficulty())
-//        case 1: maxLevel = 5; break;
-//        case 2: maxLevel = 10; break;
-//        case 3: maxLevel = 15; break;
-//
-//        // depending on difficulty, delete the rest after maxLevel
-//        switch(maxLevel)
-//        case 4: for (i = questionsList.size(), i >= maxLevel ; i--)
-//            questionsList.remove(i);
-//        case 9: for (i = questionsList.size(), i >= maxLevel ; i--)
-//            questionsList.remove(i);
-//        case 14: for (i = questionsList.size(), i >= maxLevel ; i--)
-//            questionsList.remove(i);
-//
-//        // now iterate through list, Note the ID used for better sorting of object
-//        For (Question question : questionsList) {
-//            // use a stream inside a switch or if block
-//            if (currentLevel == 1 || currrentLevel == 2) {
-//                Question easyOne  =   questionsList.stream().filter(question ->
-//                                question.getDiffculty().equals(Diffculty.EASY)
-//                                        .map(question -> question.getQuestion())
-//                                        .sorted(Comparator.comparing(Question::getID))
-//                                        .limit(1)
-//                                        .peek(question -> question.ask())
-//                                        .collect(Collectors.toList())
-//
-//
-//
-//                        // repeat for INTERMEDIATE and HARD (2 more blocks).
-//// Beyond 5 we don’t care which is asked really can else stream limit of 1 each by ID
-//
-//
-//
-//
+
     private void promptForName() {
         user.setName(null);
         boolean isValid = false;
@@ -74,44 +34,77 @@ class SevenFigureDeveloperApp {
         }
     }
 
-    private int Difficulty() {
+    private int promptForDifficulty() {
         int difficulty = 0;
         System.out.println("Press 1 for easy, 2 for intermediate, 3 for hard");
-        String input = scanner.nextLine();
+        difficulty = Integer.parseInt(scanner.nextLine());
         switch (difficulty) {
-
+            case 1: maxLevel = 5;
+                    break;
+            case 2: maxLevel = 10;
+                    break;
+            case 3: maxLevel = 15;
         }
+        return difficulty;
     }
 
 
     private Question findNextQuestion() {
         Question nextQuestion = null;
         while (isPlaying) {
-            for (Question question : QuestionDatabase) {
-                nextQuestion = question;
-                nextQuestion.ask();
+            if (maxLevel == 15) {
+                while (isPlaying) {
+                    for (Question question : questionDatabase) {
+                        nextQuestion = question;
+                        nextQuestion.askQuestions();
+                        checkAnswer(question);
+                    }
+                }
+            }
+            else if (maxLevel == 10) {
+                while (isPlaying && user.getCurrentLevel() < 11) {
+                    for (Question question : questionDatabase) {
+                        nextQuestion = question;
+                        nextQuestion.askQuestions();
+                        checkAnswer(question);
+                    }
+                }
+            }
+            else if (maxLevel == 5) {
+                while (isPlaying && user.getCurrentLevel() < 6) {
+                    for (Question question : questionDatabase) {
+                        nextQuestion = question;
+                        nextQuestion.askQuestions();
+                        checkAnswer(question);
+                    }
+                }
             }
         }
         return nextQuestion;
     }
+
+    private void checkAnswer(Question question) {
+        boolean isValid = false;
+        while (!isValid) {
+            System.out.println("Choose A, B, C, or D.");
+            String input = scanner.nextLine();
+            String answer = input.toUpperCase();
+            if (answer == "A" || answer == "B" || answer == "C" || answer == "D") {
+                isValid = true;
+                if (question.getAnswer().equals(input)) {
+                    System.out.println(question.getAnswer() + " is Correct!!!");
+                    System.out.println("You won " + question.getDollarAmount());
+                    user.setEarnings(question.getDollarAmount() + user.getEarnings());
+                    user.setCurrentLevel(user.getCurrentLevel() + 1);
+                }
+                else {
+                    isPlaying = false;
+                    System.out.println("Ouch! Good try but the correct answer is " + question.getAnswer());
+                }
+            }
+            else {
+                System.out.println("Invalid choice. Please enter A, B, C, or D.");
+            }
+        }
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

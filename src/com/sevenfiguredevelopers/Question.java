@@ -23,6 +23,7 @@ public class Question {
 
     // business method
     public String askQuestions() {
+        System.out.println(getQuestionWithChoice());
         return getQuestionWithChoice();
     }
 

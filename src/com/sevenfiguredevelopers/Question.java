@@ -10,6 +10,10 @@ public class Question {
     Map<String, String> databaseQA;
 
     // ctor
+
+    public Question() {
+    }
+
     public Question(int id, Difficulty difficulty, String questionWithChoice, String answer) {
         this.id = id;
         this.difficulty = difficulty;
@@ -17,18 +21,26 @@ public class Question {
         this.answer = answer;
     }
 
-    // business class
+    // business method
     public String askQuestions() {
         return getQuestionWithChoice();
     }
 
-    // getter and setter
+    // Getter and Setter
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Difficulty getDifficulty() {
         return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 
     public String getQuestionWithChoice() {
@@ -45,9 +57,6 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question{" +
-                ", questionWithChoice='" + questionWithChoice + '\'' +
-                ", answer='" + answer + '\'' +
-                '}';
+        return "This question difficulty level is " + getDifficulty() + ".";
     }
 }

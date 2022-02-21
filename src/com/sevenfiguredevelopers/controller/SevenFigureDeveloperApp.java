@@ -93,7 +93,7 @@ public class SevenFigureDeveloperApp {
     private void promptForAnswer(Question question) {
        // boolean isValid = false;
         String input = prompter.prompt("Choose A, B, C, or D", "A|B|C|D|a|b|c|d", "Error, please enter A, B, C, or D");
-        isPlaying = question.checkAnswer(input);
+        isPlaying = question.checkAnswer(input.toUpperCase(Locale.ROOT));;
 
     }
 

@@ -1,18 +1,23 @@
 package com.sevenfiguredevelopers.controller;
 
+import com.sevenfiguredevelopers.Question;
+import com.sevenfiguredevelopers.User;
+
 import java.util.Scanner;
 
 class SevenFigureDeveloperApp {
     private Boolean isPlaying = false;  // not playing yet
     private int maxLevel = 15;    // default
-    private List<Question>()questionsList =new ArrayList<Question>(); //List of Questions
+    private List<Question>() questionsList =new ArrayList<Question>(); //List of Questions
     private Scanner scanner = new Scanner(System.in);
     User user = new User();
 // **populateQuestionsList here either with method or loop through a file we write**
 
     public void execute() {
-        promptForName();   // get their name, set to user input
-
+        promptForName();   // get their name, set to user's name to input
+        isPlaying = true;
+        promptForDifficulty();
+        findNextQuestion();
     }
 
 //
@@ -58,7 +63,36 @@ class SevenFigureDeveloperApp {
 //
 //
     private void promptForName() {
+        user.setName(null);
+        boolean isValid = false;
+        while (!isValid) {
+            System.out.println("Contestant, please enter your first name: ");
+            String input = scanner.nextLine();
+            // if regex check here for valid
+            user.setName(input);
+            isValid = true;
+        }
+    }
 
+    private int Difficulty() {
+        int difficulty = 0;
+        System.out.println("Press 1 for easy, 2 for intermediate, 3 for hard");
+        String input = scanner.nextLine();
+        switch (difficulty) {
+
+        }
+    }
+
+
+    private Question findNextQuestion() {
+        Question nextQuestion = null;
+        while (isPlaying) {
+            for (Question question : QuestionDatabase) {
+                nextQuestion = question;
+                nextQuestion.ask();
+            }
+        }
+        return nextQuestion;
     }
 }
 

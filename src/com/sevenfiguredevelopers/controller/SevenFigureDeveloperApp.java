@@ -1,6 +1,7 @@
 package com.sevenfiguredevelopers.controller;
 
 import com.sevenfiguredevelopers.Question;
+import com.sevenfiguredevelopers.QuestionDB;
 import com.sevenfiguredevelopers.User;
 
 import java.util.*;
@@ -9,7 +10,9 @@ import java.util.Scanner;
 class SevenFigureDeveloperApp {
     private Boolean isPlaying = false;  // not playing yet
     private int maxLevel = 15;    // default
-    private List<Question> questionsList = new ArrayList<>(); //List of Questions
+//    private List<Question> questionsList = new ArrayList<>(); //List of Questions
+    QuestionDB questionDB = new QuestionDB();
+
     private Scanner scanner = new Scanner(System.in);
     User user = new User();
 // **populateQuestionsList here either with method or loop through a file we write**
@@ -54,7 +57,7 @@ class SevenFigureDeveloperApp {
         while (isPlaying) {
             if (maxLevel == 15) {
                 while (isPlaying) {
-                    for (Question question : questionDatabase) {
+                    for (Question question : questionDB.getQuestionDatabase()) {
                         nextQuestion = question;
                         nextQuestion.askQuestions();
                         checkAnswer(question);
@@ -63,7 +66,7 @@ class SevenFigureDeveloperApp {
             }
             else if (maxLevel == 10) {
                 while (isPlaying && user.getCurrentLevel() < 11) {
-                    for (Question question : questionDatabase) {
+                    for (Question question : questionDB.getQuestionDatabase()) {
                         nextQuestion = question;
                         nextQuestion.askQuestions();
                         checkAnswer(question);
@@ -72,7 +75,7 @@ class SevenFigureDeveloperApp {
             }
             else if (maxLevel == 5) {
                 while (isPlaying && user.getCurrentLevel() < 6) {
-                    for (Question question : questionDatabase) {
+                    for (Question question : questionDB.getQuestionDatabase()) {
                         nextQuestion = question;
                         nextQuestion.askQuestions();
                         checkAnswer(question);
@@ -82,6 +85,7 @@ class SevenFigureDeveloperApp {
         }
         return nextQuestion;
     }
+
 
     private void checkAnswer(Question question) {
         boolean isValid = false;
@@ -93,8 +97,8 @@ class SevenFigureDeveloperApp {
                 isValid = true;
                 if (question.getAnswer().equals(input)) {
                     System.out.println(question.getAnswer() + " is Correct!!!");
-                    System.out.println("You won " + question.getDollarAmount());
-                    user.setEarnings(question.getDollarAmount() + user.getEarnings());
+                    System.out.println("You won " + question.getDollarAmount();
+                    user.setEarnings(question.getDifficulty().getDollarAmount() + user.getEarnings());
                     user.setCurrentLevel(user.getCurrentLevel() + 1);
                 }
                 else {

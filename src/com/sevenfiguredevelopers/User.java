@@ -12,9 +12,10 @@ public class User {
     }
 
     public User(String name, int earnings, int currentLevel) {
-        this.name = name;
-        this.earnings = earnings;
-        this.currentLevel = currentLevel;
+       setName(name);
+       setEarnings(earnings);
+       setCurrentLevel(currentLevel);
+
     }
 
 

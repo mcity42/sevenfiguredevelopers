@@ -7,10 +7,9 @@ import com.sevenfiguredevelopers.User;
 import java.util.*;
 import java.util.Scanner;
 
-class SevenFigureDeveloperApp {
+public class SevenFigureDeveloperApp {
     private Boolean isPlaying = false;  // not playing yet
     private int maxLevel = 15;    // default
-//    private List<Question> questionsList = new ArrayList<>(); //List of Questions
     QuestionDB questionDB = new QuestionDB();
 
     private Scanner scanner = new Scanner(System.in);
@@ -97,7 +96,7 @@ class SevenFigureDeveloperApp {
                 isValid = true;
                 if (question.getAnswer().equals(input)) {
                     System.out.println(question.getAnswer() + " is Correct!!!");
-                    System.out.println("You won " + question.getDollarAmount();
+                    System.out.println("You won " + question.getDifficulty().getDollarAmount());
                     user.setEarnings(question.getDifficulty().getDollarAmount() + user.getEarnings());
                     user.setCurrentLevel(user.getCurrentLevel() + 1);
                 }

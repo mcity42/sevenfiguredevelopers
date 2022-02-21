@@ -10,4 +10,8 @@ enum Difficulty {
     Difficulty(int dollarAmount) {
         this.dollarAmount = dollarAmount;
     }
+
+    public int getDollarAmount() {
+        return dollarAmount;
+    }
 }

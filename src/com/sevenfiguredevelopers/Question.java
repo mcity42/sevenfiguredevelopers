@@ -4,16 +4,14 @@ import java.util.Map;
 
 public class Question {
     private int id;
-    private int dollarAmount;
     private Difficulty difficulty;
     private String questionWithChoice;
     private String answer;
     Map<String, String> databaseQA;
 
     // ctor
-    public Question(int id, int dollarAmount, Difficulty difficulty, String questionWithChoice, String answer) {
+    public Question(int id, Difficulty difficulty, String questionWithChoice, String answer) {
         this.id = id;
-        this.dollarAmount = dollarAmount;
         this.difficulty = difficulty;
         this.questionWithChoice = questionWithChoice;
         this.answer = answer;
@@ -27,10 +25,6 @@ public class Question {
     // getter and setter
     public int getId() {
         return id;
-    }
-
-    public int getDollarAmount() {
-        return dollarAmount;
     }
 
     public Difficulty getDifficulty() {
@@ -52,7 +46,6 @@ public class Question {
     @Override
     public String toString() {
         return "Question{" +
-                "dollarAmount=" + dollarAmount +
                 ", questionWithChoice='" + questionWithChoice + '\'' +
                 ", answer='" + answer + '\'' +
                 '}';

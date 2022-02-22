@@ -1,7 +1,5 @@
 package com.sevenfiguredevelopers;
 
-import java.util.Map;
-
 public class Question {
     private int id;
     private Difficulty difficulty;
@@ -15,7 +13,7 @@ public class Question {
         this.answer = answer;
     }
 
-    public String askQuestion() {
+    public String askQuestion() { //TODO: never used return
         System.out.println(getQuestionWithChoice());
         return getQuestionWithChoice();
     }

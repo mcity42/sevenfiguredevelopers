@@ -76,7 +76,7 @@ public class SevenFigureDeveloperApp {
         if (isPlaying) {
             String input = prompter.prompt("Choose 1 to continue or 2 to exit with earnings. ", "1|2", "Error, please enter 1 or 2.");
             if (input.equals("1")) {
-                continuePlaying = true;
+                continuePlaying = true; // TODO: Can we use break?
             } else if (input.equals("2")) {
                 System.out.println("Great game you won: $" + user.getEarnings());
                 continuePlaying = false;

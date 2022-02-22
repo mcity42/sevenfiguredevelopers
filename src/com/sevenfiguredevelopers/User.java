@@ -18,7 +18,7 @@ public class User {
     }
 
     // Methods
-    public void winEarnings() {
+    public void winEarnings() { //TODO: never used
         System.out.println("Level " + getCurrentLevel() + "" + getName() + "has won $" + getEarnings() + "! ");
     }
 

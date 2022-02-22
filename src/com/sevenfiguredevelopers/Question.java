@@ -3,18 +3,14 @@ package com.sevenfiguredevelopers;
 import com.apps.util.Prompter;
 
 import java.util.Map;
-import java.util.Scanner;
 
 public class Question {
     private int id;
     private Difficulty difficulty;
     private String questionWithChoice;
     private String answer;
-    Map<String, String> databaseQA;
-
 
     // ctor
-
     public Question() {
     }
 
@@ -26,9 +22,8 @@ public class Question {
     }
 
     // business method
-    public String askQuestions() {
+    public void askQuestions() {
         System.out.println(getQuestionWithChoice());
-        return getQuestionWithChoice();
     }
 
     public boolean checkAnswer(String answer) {
@@ -38,8 +33,6 @@ public class Question {
             System.out.println(this.getAnswer() + " is Correct!!!");
             System.out.println("This question was worth: " + this.getDifficulty().getDollarAmount());
             isCorrect = true;
-//            user.setEarnings(this.getDifficulty().getDollarAmount() + user.getEarnings());
-//            user.setCurrentLevel(user.getCurrentLevel() + 1);
         }
         else if (! this.getAnswer().equals(answer) ){
             System.out.println("Ouch! Good try but the correct answer is " + this.getAnswer());
@@ -70,10 +63,6 @@ public class Question {
 
     public String getAnswer() {
         return answer;
-    }
-
-    public Map<String, String> getDatabaseQA() {
-        return databaseQA;
     }
 
     @Override

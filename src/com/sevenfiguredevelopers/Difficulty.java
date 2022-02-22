@@ -1,5 +1,7 @@
 package com.sevenfiguredevelopers;
 
+import java.util.function.Predicate;
+
 public enum Difficulty {
     EASY(150_000),
     MEDIUM(200_000),

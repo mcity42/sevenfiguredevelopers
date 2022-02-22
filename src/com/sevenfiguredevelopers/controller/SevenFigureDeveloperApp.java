@@ -47,17 +47,18 @@ public class SevenFigureDeveloperApp {
     }
 
     private void findNextQuestion() {
-        Question nextQuestion = null;
+      //  Question nextQuestion = null;
         for (int i = 0; i < maxLevel; i++) {
             for (Question question : questionDB.getQuestionDatabase()) {
                 if (isPlaying) {
-                    if(index > (maxLevel - 1)) {
-                        System.out.println("Your total is: " + user.getEarnings() + " You have reached your game limit. Please restart!!");
+                    if (index > (maxLevel - 1) && (user.getEarnings() >= 1_000_000)) {
+                        System.out.println("Your total is: $" + user.getEarnings() + "!! You are a Seven Figure Developer!!");
+                        System.out.println("Please restart.");
                         isPlaying = false;
                         break;
                     }
-                    nextQuestion = question;
-                    nextQuestion.askQuestions();
+                    //question = question;
+                    question.askQuestions();
                     promptForAnswer(question);
                     showWinnings(question);
                     promptToContinue();
@@ -95,6 +96,7 @@ public class SevenFigureDeveloperApp {
             int winnings = question.getDifficulty().getDollarAmount() + user.getEarnings();
             user.setEarnings(winnings);
             System.out.println("Current Winnings is now $" + winnings);
+            System.out.println("--------------------------");
         }
         else {
             System.out.println("You take home zero dollars.");

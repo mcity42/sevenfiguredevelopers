@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.Scanner;
 
 public class SevenFigureDeveloperApp {
+
     private Boolean isPlaying = false;
     private int maxLevel = 15;
     private int index = 0;
@@ -16,15 +17,12 @@ public class SevenFigureDeveloperApp {
     Prompter prompter = new Prompter(new Scanner(System.in));
     User user = new User();
 
-
     public void execute() {
         promptForName();
         isPlaying = true;
         promptForDifficulty();
         findNextQuestion();
-
     }
-
 
     private void promptForName() {
         user.setName(null);
@@ -47,7 +45,6 @@ public class SevenFigureDeveloperApp {
     }
 
     private void findNextQuestion() {
-      //  Question nextQuestion = null;
         for (int i = 0; i < maxLevel; i++) {
             for (Question question : questionDB.getQuestionDatabase()) {
                 if (isPlaying) {
@@ -57,7 +54,6 @@ public class SevenFigureDeveloperApp {
                         isPlaying = false;
                         break;
                     }
-                    //question = question;
                     question.askQuestion();
                     promptForAnswer(question);
                     showWinnings(question);
@@ -68,12 +64,10 @@ public class SevenFigureDeveloperApp {
         }
     }
 
-
     private void promptForAnswer(Question question) {
         String input = prompter.prompt("Choose A, B, C, or D: ", "A|B|C|D|a|b|c|d", "Error, please enter A, B, C, or D");
         isPlaying = question.checkAnswer(input.toUpperCase(Locale.ROOT));
     }
-
 
     private boolean promptToContinue() {
           boolean continuePlaying = isPlaying;

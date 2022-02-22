@@ -11,4 +11,12 @@ public class QuestionTest extends TestCase {
         app.execute();
     }
 
+    public void testValidAnswerInput() {
+    }
+
+    public void testAnswerInput_shouldReturnErrorMessage_whenNotCorrectAnswerChoice() {
+        //assertTrue(isPlaying,
+    }
+
+
 }

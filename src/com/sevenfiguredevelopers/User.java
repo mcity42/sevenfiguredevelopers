@@ -3,26 +3,14 @@ package com.sevenfiguredevelopers;
 public class User {
     private String name;
     private int earnings;
-    private int currentLevel;
+    private int currentLevel = 1;
 
-    // Constructors
+
     public User() {
 
     }
 
-    public User(String name, int earnings, int currentLevel) {
-        setName(name);
-        setEarnings(earnings);
-        setCurrentLevel(currentLevel);
 
-    }
-
-    // Methods
-    public void winEarnings() { //TODO: never used
-        System.out.println("Level " + getCurrentLevel() + "" + getName() + "has won $" + getEarnings() + "! ");
-    }
-
-    // Getters and setters
     public String getName() {
         return name;
     }
@@ -49,10 +37,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + getName() + '\'' +
-                ", earnings=" + getEarnings() +
-                ", currentLevel=" + getCurrentLevel() +
-                '}';
+        return "Player: " +
+                "Name='" + getName() + '\'' +
+                ", Winnings= $" + getEarnings() +
+                ", You're now on question " + (getCurrentLevel() + 1) +
+                '.';
     }
 }

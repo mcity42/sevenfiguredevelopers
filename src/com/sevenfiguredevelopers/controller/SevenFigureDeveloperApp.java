@@ -11,10 +11,12 @@ import java.util.Scanner;
 public class SevenFigureDeveloperApp {
     private Boolean isPlaying = false;
     private int maxLevel = 15;
-    private int index = 0;
+    User user = new User();
+    private int currentLevel = user.getCurrentLevel();
     QuestionDB questionDB = new QuestionDB();
     Prompter prompter = new Prompter(new Scanner(System.in));
-    User user = new User();
+
+
 
     public void execute() {
         promptForName();
@@ -48,9 +50,9 @@ public class SevenFigureDeveloperApp {
 
     private void findNextQuestion() {
         for (int i = 0; i < maxLevel; i++) {
-            for (Question question : questionDB.getQuestionDatabase()) {
+            for (Question question : questionDB.getRandomFromDB()) {
                 if (isPlaying) {
-                    if (index > (maxLevel - 1) && (user.getEarnings() >= 1_000_000)) {
+                    if (currentLevel > (maxLevel - 1) && (user.getEarnings() >= 1_000_000)) {
                         System.out.println("Your total is: $" + user.getEarnings() + "!! You are a Seven Figure Developer!!");
                         System.out.println("Please restart.");
                         isPlaying = false;
@@ -60,7 +62,6 @@ public class SevenFigureDeveloperApp {
                     promptForAnswer(question);
                     showWinnings(question);
                     promptToContinue();
-                    index++;
                 }
             }
         }
@@ -75,10 +76,8 @@ public class SevenFigureDeveloperApp {
         boolean continuePlaying = isPlaying;
         if (isPlaying) {
             String input = prompter.prompt("Choose 1 to continue or 2 to exit with earnings. ", "1|2", "Error, please enter 1 or 2.");
-            if (input.equals("1")) {
-                continuePlaying = true; // TODO: Can we use break?
-            } else if (input.equals("2")) {
-                System.out.println("Great game you won: $" + user.getEarnings());
+            if (input.equals("2")) {
+                System.out.println("Great game " + user.getName() + ", you won $" + user.getEarnings() + " and made it pass level " + user.getCurrentLevel());
                 continuePlaying = false;
                 isPlaying = false;
             }
@@ -90,7 +89,8 @@ public class SevenFigureDeveloperApp {
         if (isPlaying) {
             int winnings = question.getDifficulty().getDollarAmount() + user.getEarnings();
             user.setEarnings(winnings);
-            System.out.println("Current Winnings is now $" + winnings);
+            user.setCurrentLevel(currentLevel++);
+            System.out.println(user);
             System.out.println("--------------------------");
         } else {
             System.out.println("You take home zero dollars.");

@@ -1,7 +1,5 @@
 package com.sevenfiguredevelopers;
 
-import com.sevenfiguredevelopers.controller.SevenFigureDeveloperApp;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -62,7 +60,7 @@ public class QuestionDB {
                     " (b) Dennis Ritchie \n (c) James Gosling \n (d) Bjarne Stroustroup", "C")
     ));
 
-    public List<Question> getQuestionDatabase() {
+    public List<Question> getRandomFromDB() {
         Collections.shuffle(questionDatabase);
         return questionDatabase;
     }

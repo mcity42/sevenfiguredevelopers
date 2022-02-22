@@ -13,9 +13,8 @@ public class Question {
         this.answer = answer;
     }
 
-    public String askQuestion() { //TODO: never used return
+    public void askQuestion() {
         System.out.println(getQuestionWithChoice());
-        return getQuestionWithChoice();
     }
 
     public boolean checkAnswer(String answer) {

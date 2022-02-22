@@ -1,9 +1,16 @@
 package com.sevenfiguredevelopers.controller;
 
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-public class SevenFigureDeveloperAppTest extends TestCase {
+public class SevenFigureDeveloperAppTest {
 
-    public void testIsPlaying_whenUserElectsToEndGame_whenPromptedToContinue() {
+    @Before
+    public void setUp() {
+    }
+
+    @Test
+    public void execute() {
     }
 }

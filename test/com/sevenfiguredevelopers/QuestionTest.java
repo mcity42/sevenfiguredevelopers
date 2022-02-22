@@ -1,21 +1,20 @@
 package com.sevenfiguredevelopers;
 
-import com.sevenfiguredevelopers.controller.SevenFigureDeveloperApp;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
-public class QuestionTest extends TestCase {
-
+public class QuestionTest {
     private Question question;
     private QuestionDB db;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         question = new Question();
         db = new QuestionDB();
     }
 
+    @Test
     public void testValidAnswerInput() {
     }
 
@@ -46,6 +45,4 @@ public class QuestionTest extends TestCase {
         }
         assertEquals(6,count);
     }
-
-
 }

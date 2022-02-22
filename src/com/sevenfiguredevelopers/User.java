@@ -5,10 +5,8 @@ public class User {
     private int earnings;
     private int currentLevel = 1;
 
-
     public User() {
     }
-
 
     public String getName() {
         return name;

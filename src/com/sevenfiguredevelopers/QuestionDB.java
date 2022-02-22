@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class QuestionDB {
-
     private List<Question> questionDatabase = new ArrayList<>(List.of(
             // id     difficulty     question         answer
             new Question(1, Difficulty.EASY, "What is a class? \n (a) the \"blueprint\" " +

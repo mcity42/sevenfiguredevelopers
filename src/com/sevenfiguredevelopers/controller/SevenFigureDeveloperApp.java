@@ -16,8 +16,6 @@ public class SevenFigureDeveloperApp {
     QuestionDB questionDB = new QuestionDB();
     Prompter prompter = new Prompter(new Scanner(System.in));
 
-
-
     public void execute() {
         System.out.println(" __        ___            __        __          _          _           _                   \n" +
                 " \\ \\      / / |__   ___   \\ \\      / /_ _ _ __ | |_ ___   | |_ ___    | |__   ___     __ _ \n" +

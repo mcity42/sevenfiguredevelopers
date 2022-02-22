@@ -9,17 +9,16 @@ import java.util.*;
 import java.util.Scanner;
 
 public class SevenFigureDeveloperApp {
-    private Boolean isPlaying = false;  // not playing yet
-    private int maxLevel = 15;    // default
+    private Boolean isPlaying = false;
+    private int maxLevel = 15;
     private int index = 0;
     QuestionDB questionDB = new QuestionDB();
     Prompter prompter = new Prompter(new Scanner(System.in));
-    //private Scanner scanner = new Scanner(System.in);
     User user = new User();
-// **populateQuestionsList here either with method or loop through a file we write**
+
 
     public void execute() {
-        promptForName();   // get their name, set to user's name to input
+        promptForName();
         isPlaying = true;
         promptForDifficulty();
         findNextQuestion();
@@ -31,7 +30,6 @@ public class SevenFigureDeveloperApp {
         user.setName(null);
         boolean isValid = false;
         String input = prompter.prompt("Enter your name: ", "\\w+", "Invalid name");
-       // String input =
         user.setName(input);
     }
 
@@ -48,13 +46,12 @@ public class SevenFigureDeveloperApp {
         }
     }
 
-
     private void findNextQuestion() {
         Question nextQuestion = null;
         for (int i = 0; i < maxLevel; i++) {
             for (Question question : questionDB.getQuestionDatabase()) {
                 if (isPlaying) {
-                    if(index>maxLevel-1) {
+                    if(index > (maxLevel - 1)) {
                         System.out.println("Your total is: " + user.getEarnings() + " You have reached your game limit. Please restart!!");
                         isPlaying = false;
                         break;
@@ -68,43 +65,12 @@ public class SevenFigureDeveloperApp {
                 }
             }
         }
-//        if (maxLevel == 10) {
-//            while (user.getCurrentLevel() < 11) {
-//                for (Question question : questionDB.getQuestionDatabase()) {
-//                    if (isPlaying) {
-//                        nextQuestion = question;
-//                        nextQuestion.askQuestions();
-//                        promptForAnswer(question);
-//                        showWinnings(question);
-//                        promptToContinue();
-//                    }
-//                }
-//            }
-//        }
-//            if (maxLevel == 5) {
-//                //while (user.getCurrentLevel() < 6) {
-//                for (Question question : questionDB.getQuestionDatabase()) {
-//                    if (isPlaying) {
-//                        nextQuestion = question;
-//                        nextQuestion.askQuestions();
-//                        promptForAnswer(question);
-//                        showWinnings(question);
-//                        promptToContinue();
-//
-//                    }
-//
-//                }
-//            }
-
     }
 
 
-
     private void promptForAnswer(Question question) {
-       // boolean isValid = false;
         String input = prompter.prompt("Choose A, B, C, or D: ", "A|B|C|D|a|b|c|d", "Error, please enter A, B, C, or D");
-        isPlaying = question.checkAnswer(input.toUpperCase(Locale.ROOT));;
-
+        isPlaying = question.checkAnswer(input.toUpperCase(Locale.ROOT));
     }
 
 
@@ -116,7 +82,7 @@ public class SevenFigureDeveloperApp {
                   continuePlaying = true;
               }
               else if (input.equals("2")) {
-                System.out.println("Great game you won: " + user.getEarnings());
+                System.out.println("Great game you won: $" + user.getEarnings());
                 continuePlaying = false;
                 isPlaying = false;
               }
@@ -124,10 +90,14 @@ public class SevenFigureDeveloperApp {
           return continuePlaying;
     }
 
-    private int showWinnings(Question question) {
-        int winnings = question.getDifficulty().getDollarAmount() + user.getEarnings();
-        user.setEarnings(winnings);
-        return winnings;
+    private void showWinnings(Question question) {
+        if (isPlaying == true) {
+            int winnings = question.getDifficulty().getDollarAmount() + user.getEarnings();
+            user.setEarnings(winnings);
+            System.out.println("Current Winnings is now $" + winnings);
+        }
+        else {
+            System.out.println("You take home zero dollars.");
+        }
     }
-
 }

@@ -3,16 +3,17 @@ package com.sevenfiguredevelopers;
 import com.sevenfiguredevelopers.controller.SevenFigureDeveloperApp;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class QuestionDB  {
 
     private List<Question> questionDatabase = new ArrayList<>(List.of (
             // id     difficulty     question         answer
-            new Question(1, Difficulty.EASY, "What is a class? \n A: the \"blueprint\" " +
-                    "when creating objects. \n B. An integer \n C. size of variable \n D. constructor  " , "A"),
+            new Question(1, Difficulty.EASY, "What is a class? \n (a) the \"blueprint\" " +
+                    "when creating objects. \n (b) An integer \n (c) size of variable \n (d) constructor  " , "A"),
             new Question(2, Difficulty.EASY, "What is the lowest amount of constructors an object can have? " +
-                    "\n A: 1 \n B: 0 \n C: 2 \n D: 3", "A"),
+                    "\n (a) 1 \n (b) 0 \n (c) 2 \n (d) 3", "A"),
             new Question(3, Difficulty.EASY, "Which statement is not true in java language?\n" +
                     "\n" +
                     "(a) A public member of a class can be accessed in all the packages.\n" +
@@ -24,9 +25,9 @@ public class QuestionDB  {
                     "(a) static (b) const (c) final (d) abstract ",
                     "C"),
             new Question(5, Difficulty.MEDIUM, "An object is an instance of a _____ ? \n " +
-                    "A: method \n B: thing \n C: class \n D: object", "C"),
-            new Question(6, Difficulty.MEDIUM, "What is the result of this expression: 2 % 2 == 1 ? " +
-                    "\n A: True \n B: False", "B"),
+                    "(a) method \n (b) thing \n (c) class \n (d) object", "C"),
+            new Question(6, Difficulty.MEDIUM, " Which collection acts like a table of key-value pairs? " +
+                    "\n (a) List (b) Map (c) ArrayList (d) int", "B"),
             new Question(7, Difficulty.MEDIUM, "What is printed by the following statement?\n" +
                     "System.out.print(“Hello,\\nworld!”);\n" +
                     "\n" +
@@ -42,23 +43,28 @@ public class QuestionDB  {
                     "(c) It is another name for a Java source file.\n" +
                     "(d) It is the code written within the instance methods of a class.",
                     "A"),
-            new Question(9, Difficulty.HARD, "Which collection doesn't allow duplicates ? \n A: Set \n B: HashMap \n C: ArrayList \n D: List", "A"),
-            new Question(14, Difficulty.HARD, "Mark the incorrect statement from the following:\n" +
+            new Question(9, Difficulty.HARD, "Which collection doesn't allow duplicates ? \n (a) Set \n (b) HashMap \n (c) ArrayList \n (d) List", "A"),
+            new Question(10, Difficulty.HARD, "Mark the incorrect statement from the following:\n" +
                     "\n" +
                     "(a) Java is not a language for internet programming.\n" +
                     "(b) In java it is not easy to write C-like so called procedural programs\n" +
                     "(c) In java language objects have to be manipulated\n" +
-                    "(d) In java language error processing is built into the language", "D")
+                    "(d) In java language error processing is built into the language", "D"),
+            new Question(11, Difficulty.EASY, "Which is the characteristic of an immutable class? \n (a) Objects of the class cannot change content after creation \n" +
+                    " (b) Objects of the class cannot be parsed \n (c) The class has all static methods \n (d) The class has all static final fields", "A"),
+            new Question(12, Difficulty.EASY, "Which of the following is not an interface?  \n (a) Map \n" +
+                    " (b) SortedMap \n (c) ArrayList \n (d) Collection", "C"),
+            new Question(13, Difficulty.MEDIUM, "What was the original name of Java? \n (a) WebC \n" +
+                    " (b) Oak \n (c) C- \n (d) SunLang", "B"),
+            new Question(14, Difficulty.MEDIUM, "What is the output of: System.out.println(1+2+” = “+1+2); ?  \n (a) 12=3 \n" +
+                    " (b) 3=3 \n (c) 12=12 \n (d) 3=12", "D"),
+            new Question(15, Difficulty.HARD, "Who invented Java on accident? \n (a) Alan Turing \n" +
+                    " (b) Dennis Ritchie \n (c) James Gosling \n (d) Bjarne Stroustroup", "C")
     ));
 
 
-    // Add 5 more (malik), and rearrange to 2 easy, 2 med, 1 hard
-
-
-
-
     public List<Question> getQuestionDatabase() {
-        // return this list in a random order each time
+        Collections.shuffle(questionDatabase);
         return questionDatabase;
     }
 }

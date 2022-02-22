@@ -9,16 +9,15 @@ import java.util.*;
 import java.util.Scanner;
 
 public class SevenFigureDeveloperApp {
-    private Boolean isPlaying = false;  // not playing yet
-    private int maxLevel = 15;    // default
+    private Boolean isPlaying = false;
+    private int maxLevel = 15;
     QuestionDB questionDB = new QuestionDB();
     Prompter prompter = new Prompter(new Scanner(System.in));
-    //private Scanner scanner = new Scanner(System.in);
     User user = new User();
-// **populateQuestionsList here either with method or loop through a file we write**
+
 
     public void execute() {
-        promptForName();   // get their name, set to user's name to input
+        promptForName();
         isPlaying = true;
         promptForDifficulty();
         findNextQuestion();
@@ -30,7 +29,6 @@ public class SevenFigureDeveloperApp {
         user.setName(null);
         boolean isValid = false;
         String input = prompter.prompt("Enter your name: ", "\\w+", "Invalid name");
-       // String input =
         user.setName(input);
     }
 
@@ -75,7 +73,6 @@ public class SevenFigureDeveloperApp {
             }
         }
         for (int i = 0; i < 5; i++) {
-            // while (user.getCurrentLevel() < 6) {
             for (Question question : questionDB.getQuestionDatabase()) {
                 if (isPlaying) {
                     nextQuestion = question;
@@ -91,10 +88,8 @@ public class SevenFigureDeveloperApp {
 
 
     private void promptForAnswer(Question question) {
-       // boolean isValid = false;
         String input = prompter.prompt("Choose A, B, C, or D", "A|B|C|D|a|b|c|d", "Error, please enter A, B, C, or D");
-        isPlaying = question.checkAnswer(input.toUpperCase(Locale.ROOT));;
-
+        isPlaying = question.checkAnswer(input);
     }
 
 
@@ -119,5 +114,4 @@ public class SevenFigureDeveloperApp {
         user.setEarnings(winnings);
         return winnings;
     }
-
 }

@@ -13,7 +13,6 @@ public class Question {
     Map<String, String> databaseQA;
 
 
-    // ctor
 
     public Question() {
     }
@@ -38,8 +37,6 @@ public class Question {
             System.out.println(this.getAnswer() + " is Correct!!!");
             System.out.println("This question was worth: " + this.getDifficulty().getDollarAmount());
             isCorrect = true;
-//            user.setEarnings(this.getDifficulty().getDollarAmount() + user.getEarnings());
-//            user.setCurrentLevel(user.getCurrentLevel() + 1);
         }
         else if (! this.getAnswer().equals(answer) ){
             System.out.println("Ouch! Good try but the correct answer is " + this.getAnswer());

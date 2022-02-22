@@ -58,7 +58,7 @@ public class SevenFigureDeveloperApp {
                         break;
                     }
                     //question = question;
-                    question.askQuestions();
+                    question.askQuestion();
                     promptForAnswer(question);
                     showWinnings(question);
                     promptToContinue();

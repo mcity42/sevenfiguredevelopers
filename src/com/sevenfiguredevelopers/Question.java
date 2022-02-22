@@ -1,9 +1,6 @@
 package com.sevenfiguredevelopers;
 
-import com.apps.util.Prompter;
-
 import java.util.Map;
-import java.util.Scanner;
 
 public class Question {
     private int id;
@@ -25,7 +22,7 @@ public class Question {
     }
 
     // business method
-    public String askQuestions() {
+    public String askQuestion() {
         System.out.println(getQuestionWithChoice());
         return getQuestionWithChoice();
     }

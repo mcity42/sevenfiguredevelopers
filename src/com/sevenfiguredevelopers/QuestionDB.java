@@ -10,18 +10,18 @@ public class QuestionDB  {
     private List<Question> questionDatabase = new ArrayList<>(List.of (
             // id     difficulty     question         answer
             new Question(1, Difficulty.EASY, "What is a class? \n A: the \"blueprint\" " +
-                    "when creating objects. \n B. An integer \n C. size of variable \n D. constructor  " , "A"),
+                    "when creating objects. \n B. An integer \n C. size of variable \n D. constructor  \n" , "A"),
             new Question(2, Difficulty.EASY, "What is the lowest amount of constructors an object can have? " +
                     "\n A: 1 \n B: 0 \n C: 2 \n D: 3", "A"),
             new Question(3, Difficulty.EASY, "Which statement is not true in java language?\n" +
                     "\n" +
-                    "(a) A public member of a class can be accessed in all the packages.\n" +
-                    "(b) A private member of a class cannot be accessed by the methods of the same class.\n" +
-                    "(c) A private member of a class cannot be accessed from its derived class.\n" +
-                    "(d) A protected member of a class can be accessed from its derived class.\n",
+                    "A: A public member of a class can be accessed in all the packages.\n" +
+                    "B: A private member of a class cannot be accessed by the methods of the same class.\n" +
+                    "C: A private member of a class cannot be accessed from its derived class.\n" +
+                    "D A protected member of a class can be accessed from its derived class.\n",
                     "B"),
             new Question(4, Difficulty.EASY, "To prevent any method from overriding, we declare the method as,\n" +
-                    "(a) static (b) const (c) final (d) abstract ",
+                    "A: static \n B: const \n C: final \n D: abstract \n",
                     "C"),
             new Question(5, Difficulty.MEDIUM, "An object is an instance of a _____ ? \n " +
                     "A: method \n B: thing \n C: class \n D: object", "C"),
@@ -64,4 +64,7 @@ public class QuestionDB  {
     public List<Question> getQuestionDatabase() {
         return questionDatabase;
     }
+
+    //getRandom return and delete method?
+
 }

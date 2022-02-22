@@ -6,6 +6,9 @@ public class Question {
     private String questionWithChoice;
     private String answer;
 
+    public Question() {
+
+    }
     public Question(int id, Difficulty difficulty, String questionWithChoice, String answer) {
         this.id = id;
         this.difficulty = difficulty;

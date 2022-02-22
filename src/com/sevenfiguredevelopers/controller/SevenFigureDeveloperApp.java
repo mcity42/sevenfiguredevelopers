@@ -9,7 +9,6 @@ import java.util.*;
 import java.util.Scanner;
 
 public class SevenFigureDeveloperApp {
-
     private Boolean isPlaying = false;
     private int maxLevel = 15;
     private int index = 0;
@@ -36,11 +35,14 @@ public class SevenFigureDeveloperApp {
         String input = prompter.prompt("Select 1 for easy, 2 for intermediate, 3 for hard: ", "1|2|3", "Invalid selection");
         difficulty = Integer.parseInt(input);
         switch (difficulty) {
-            case 1: maxLevel = 5;
-                    break;
-            case 2: maxLevel = 10;
-                    break;
-            case 3: maxLevel = 15;
+            case 1:
+                maxLevel = 5;
+                break;
+            case 2:
+                maxLevel = 10;
+                break;
+            case 3:
+                maxLevel = 15;
         }
     }
 
@@ -70,29 +72,27 @@ public class SevenFigureDeveloperApp {
     }
 
     private boolean promptToContinue() {
-          boolean continuePlaying = isPlaying;
-          if (isPlaying) {
-              String input = prompter.prompt("Choose 1 to continue or 2 to exit with earnings. ", "1|2", "Error, please enter 1 or 2.");
-              if (input.equals("1")) {
-                  continuePlaying = true;
-              }
-              else if (input.equals("2")) {
+        boolean continuePlaying = isPlaying;
+        if (isPlaying) {
+            String input = prompter.prompt("Choose 1 to continue or 2 to exit with earnings. ", "1|2", "Error, please enter 1 or 2.");
+            if (input.equals("1")) {
+                continuePlaying = true;
+            } else if (input.equals("2")) {
                 System.out.println("Great game you won: $" + user.getEarnings());
                 continuePlaying = false;
                 isPlaying = false;
-              }
-          }
-          return continuePlaying;
+            }
+        }
+        return continuePlaying;
     }
 
     private void showWinnings(Question question) {
-        if (isPlaying == true) {
+        if (isPlaying) {
             int winnings = question.getDifficulty().getDollarAmount() + user.getEarnings();
             user.setEarnings(winnings);
             System.out.println("Current Winnings is now $" + winnings);
             System.out.println("--------------------------");
-        }
-        else {
+        } else {
             System.out.println("You take home zero dollars.");
         }
     }

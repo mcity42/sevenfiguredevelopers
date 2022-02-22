@@ -27,8 +27,7 @@ public class Question {
             System.out.println(this.getAnswer() + " is Correct!!!");
             System.out.println("This question was worth: $" + this.getDifficulty().getDollarAmount());
             isCorrect = true;
-        }
-        else if (! (this.getAnswer().equals(answer)) ){
+        } else if (!(this.getAnswer().equals(answer))) {
             System.out.println("\nOuch! Good try but the correct answer is " + this.getAnswer());
         }
         return isCorrect;

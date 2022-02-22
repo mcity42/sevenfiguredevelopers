@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class QuestionDB  {
+public class QuestionDB {
 
-    private List<Question> questionDatabase = new ArrayList<>(List.of (
+    private List<Question> questionDatabase = new ArrayList<>(List.of(
             // id     difficulty     question         answer
             new Question(1, Difficulty.EASY, "What is a class? \n (a) the \"blueprint\" " +
-                    "when creating objects. \n (b) An integer \n (c) size of variable \n (d) constructor  " , "A"),
+                    "when creating objects. \n (b) An integer \n (c) size of variable \n (d) constructor  ", "A"),
             new Question(2, Difficulty.EASY, "What is the lowest amount of constructors an object can have? " +
                     "\n (a) 1 \n (b) 0 \n (c) 2 \n (d) 3", "A"),
             new Question(3, Difficulty.EASY, "Which statement is not true in java language?\n" +
@@ -61,7 +61,6 @@ public class QuestionDB  {
             new Question(15, Difficulty.HARD, "Who invented Java on accident? \n (a) Alan Turing \n" +
                     " (b) Dennis Ritchie \n (c) James Gosling \n (d) Bjarne Stroustroup", "C")
     ));
-
 
     public List<Question> getQuestionDatabase() {
         Collections.shuffle(questionDatabase);

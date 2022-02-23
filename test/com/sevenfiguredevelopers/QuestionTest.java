@@ -104,5 +104,13 @@ public class QuestionTest extends TestCase {
         assertTrue(count != 0);
     }
 
+    @Test
+    public void testErrorMessage_shouldReturnErrorMessageAndFalse_whenInvalidInput() {
+        for (Question question : db.getRandomFromDB()) {
+            assertEquals(false,question.checkAnswer("!"));
+            assertEquals(false,question.checkAnswer("1"));
+            assertEquals(false,question.checkAnswer("E"));
+        }
+    }
 
 }

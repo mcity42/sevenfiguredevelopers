@@ -19,9 +19,7 @@ public class QuestionTest extends TestCase {
         db = new QuestionDB();
     }
 
-    @Test
-    public void testValidAnswerInput() {
-    }
+
 
     @Test
     public void testAnswerInput_shouldReturnDifficulty_whenGetDifficultyIsCalled() {
@@ -49,6 +47,17 @@ public class QuestionTest extends TestCase {
             }
         }
         assertEquals(6,count);
+    }
+
+    @Test
+    public void testGetDifficultyCount_shouldReturnCount_whenHardDifficultyCalled() {
+        int count = 0;
+        for (Question questions : db.getRandomFromDB()) {
+            if (questions.getDifficulty().equals(Difficulty.HARD)) {
+                count++;
+            }
+        }
+        assertEquals(3,count);
     }
 
     @Test

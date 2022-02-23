@@ -1,11 +1,12 @@
 package com.sevenfiguredevelopers;
 
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class QuestionTest {
+public class QuestionTest extends TestCase {
     private Question question;
     private QuestionDB db;
 

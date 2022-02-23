@@ -36,7 +36,7 @@ public class SevenFigureDeveloperApp {
     private void promptForName() {
         user.setName(null);
         boolean isValid = false;
-        String input = prompter.prompt("Enter your name: ", "\\w+", "Invalid name");
+        String input = prompter.prompt("Enter your name: ", "\\w+\\-\\w+\\s\\w+", "Invalid name");
         user.setName(input);
     }
 

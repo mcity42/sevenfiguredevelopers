@@ -1,6 +1,10 @@
 package com.sevenfiguredevelopers.client;
 
+import com.sevenfiguredevelopers.Question;
+import com.sevenfiguredevelopers.QuestionFile;
 import com.sevenfiguredevelopers.controller.SevenFigureDeveloperApp;
+
+import java.util.Map;
 
 public class Client {
 

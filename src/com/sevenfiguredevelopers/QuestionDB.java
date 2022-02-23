@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+// Deprecated
 public class QuestionDB {
     private List<Question> questionDatabase = new ArrayList<>(List.of(
             // id     difficulty     question         answer

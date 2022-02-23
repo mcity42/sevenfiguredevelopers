@@ -47,6 +47,6 @@ public class Question {
 
     @Override
     public String toString() {
-        return "This question difficulty level is " + getDifficulty() + ".";
+        return getQuestionWithChoice();
     }
 }

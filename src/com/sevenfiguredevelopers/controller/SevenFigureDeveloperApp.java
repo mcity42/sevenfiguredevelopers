@@ -3,6 +3,7 @@ package com.sevenfiguredevelopers.controller;
 import com.apps.util.Prompter;
 import com.sevenfiguredevelopers.Question;
 import com.sevenfiguredevelopers.QuestionDB;
+import com.sevenfiguredevelopers.QuestionFile;
 import com.sevenfiguredevelopers.User;
 
 import java.util.*;
@@ -13,7 +14,8 @@ public class SevenFigureDeveloperApp {
     private int maxLevel = 15;
     User user = new User();
     private int currentLevel = user.getCurrentLevel();
-    QuestionDB questionDB = new QuestionDB();
+//    QuestionDB questionDB = new QuestionDB();
+    QuestionFile questionFile = new QuestionFile();
     Prompter prompter = new Prompter(new Scanner(System.in));
 
     public void execute() {
@@ -58,7 +60,7 @@ public class SevenFigureDeveloperApp {
 
     private void findNextQuestion() {
         for (int i = 0; i < maxLevel; i++) {
-            for (Question question : questionDB.getRandomFromDB()) {
+            for (Question question : questionFile.getRandomFromFile()) {
                 if (isPlaying) {
                     if (currentLevel > (maxLevel - 1) && (user.getEarnings() >= 1_000_000)) {
                         System.out.println("Your total is: $" + user.getEarnings() + "!! You are a Seven Figure Developer!!");

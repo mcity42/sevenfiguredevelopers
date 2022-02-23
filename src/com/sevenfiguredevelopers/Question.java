@@ -17,7 +17,14 @@ public class Question {
     }
 
     public void askQuestion() {
-        System.out.println(getQuestionWithChoice());
+        String questionAndChoice = getQuestionWithChoice();
+        String[] parts = questionAndChoice.split("\\(");
+        String question = parts[0];
+        String choice1 = parts[1];
+        String choice2 = parts[2];
+        String choice3 = parts[3];
+        String choice4 = parts[4];
+        System.out.println(question + "\n" + choice1 + "\n" + choice2 + "\n" + choice3 + "\n" + choice4);
     }
 
     public boolean checkAnswer(String answer) {

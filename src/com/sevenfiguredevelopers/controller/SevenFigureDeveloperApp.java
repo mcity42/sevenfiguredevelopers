@@ -2,7 +2,6 @@ package com.sevenfiguredevelopers.controller;
 
 import com.apps.util.Prompter;
 import com.sevenfiguredevelopers.Question;
-import com.sevenfiguredevelopers.QuestionDB;
 import com.sevenfiguredevelopers.QuestionFile;
 import com.sevenfiguredevelopers.User;
 
@@ -85,7 +84,7 @@ public class SevenFigureDeveloperApp {
 
     private void promptForAnswer(Question question) {
         String input = prompter.prompt("Choose A, B, C, or D: ", "A|B|C|D|a|b|c|d", "Error, please enter A, B, C, or D");
-        isPlaying = question.checkAnswer(input.toUpperCase(Locale.ROOT));
+        isPlaying = question.checkAnswer(input.toUpperCase());
     }
 
     private boolean promptToContinue() {

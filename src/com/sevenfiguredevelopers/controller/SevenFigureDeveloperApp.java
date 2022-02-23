@@ -13,7 +13,6 @@ public class SevenFigureDeveloperApp {
     private int maxLevel = 15;
     User user = new User();
     private int currentLevel = user.getCurrentLevel();
-//    QuestionDB questionDB = new QuestionDB();
     QuestionFile questionFile = new QuestionFile();
     Prompter prompter = new Prompter(new Scanner(System.in));
 

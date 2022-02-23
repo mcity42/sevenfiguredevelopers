@@ -89,6 +89,8 @@ public class QuestionTest {
         assertTrue(count != 0);
     }
 
+
+
     @Test
     public void testCheckAnswer_shouldNotBeZero_whenAskedIfEqualsToD() {
         int count = 0;

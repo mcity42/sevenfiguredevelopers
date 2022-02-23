@@ -1,10 +1,15 @@
 package com.sevenfiguredevelopers;
 
+import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 
-public class QuestionTest {
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+public class QuestionTest extends TestCase {
     private Question question;
     private QuestionDB db;
 
@@ -45,4 +50,50 @@ public class QuestionTest {
         }
         assertEquals(6,count);
     }
+
+    @Test
+    public void testCheckAnswer_shouldNotBeZero_whenAskedIfEqualsToA() {
+        int count = 0;
+            for (Question questions : db.getRandomFromDB()) {
+                   if(questions.getAnswer().equals("A")) {
+                       count++;
+                   }
+            }
+        assertTrue(count != 0);
+    }
+
+    @Test
+    public void testCheckAnswer_shouldNotBeZero_whenAskedIfEqualsToB() {
+        int count = 0;
+        for (Question questions : db.getRandomFromDB()) {
+            if(questions.getAnswer().equals("B")) {
+                count++;
+            }
+        }
+        assertTrue(count != 0);
+    }
+
+    @Test
+    public void testCheckAnswer_shouldNotBeZero_whenAskedIfEqualsToC() {
+        int count = 0;
+        for (Question questions : db.getRandomFromDB()) {
+            if(questions.getAnswer().equals("C")) {
+                count++;
+            }
+        }
+        assertTrue(count != 0);
+    }
+
+    @Test
+    public void testCheckAnswer_shouldNotBeZero_whenAskedIfEqualsToD() {
+        int count = 0;
+        for (Question questions : db.getRandomFromDB()) {
+            if(questions.getAnswer().equals("D")) {
+                count++;
+            }
+        }
+        assertTrue(count != 0);
+    }
+
+
 }

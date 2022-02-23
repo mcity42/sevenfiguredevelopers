@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class QuestionDB {
+public class QuestionDB implements QuestionBank{
     private List<Question> questionDatabase = new ArrayList<>(List.of(
             // id     difficulty     question         answer
             new Question(1, Difficulty.EASY, "What is a class? \n (a) the \"blueprint\" " +
@@ -60,7 +60,7 @@ public class QuestionDB {
                     " (b) Dennis Ritchie \n (c) James Gosling \n (d) Bjarne Stroustroup", "C")
     ));
 
-    public List<Question> getRandomFromDB() {
+    public List<Question> getAllQuestions() {
         Collections.shuffle(questionDatabase);
         return questionDatabase;
     }

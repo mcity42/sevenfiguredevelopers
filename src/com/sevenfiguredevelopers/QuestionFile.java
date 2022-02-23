@@ -5,11 +5,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-public class QuestionFile {
+public class QuestionFile implements QuestionBank{
     private Map<Integer, Question> qMap = loadQuestionsFromFile();
 
     // Load the Question objects from file
-    public Map<Integer, Question> loadQuestionsFromFile() {
+    private Map<Integer, Question> loadQuestionsFromFile() {
         Map<Integer, Question> answerMap = new HashMap<>();
 
         try {
@@ -30,7 +30,7 @@ public class QuestionFile {
         return answerMap;
     }
 
-    public List<Question> getRandomFromFile() {
+    public List<Question> getAllQuestions() {
         List<Question> questionList = new ArrayList<>(qMap.values());
         Collections.shuffle(questionList);
         return questionList;

@@ -26,7 +26,7 @@ public class QuestionTest {
     @Test
     public void testGetDifficultyCount_shouldReturnCount_whenEasyDifficultyCalled() {
         int count = 0;
-        for(Question questions : db.getRandomFromDB()) {
+        for(Question questions : db.getAllQuestions()) {
                 if (questions.getDifficulty().equals(Difficulty.EASY)) {
                     count++;
                 }
@@ -37,7 +37,7 @@ public class QuestionTest {
     @Test
     public void testGetDifficultyCount_shouldReturnCount_whenMediumDifficultyCalled() {
         int count = 0;
-        for(Question questions : db.getRandomFromDB()) {
+        for(Question questions : db.getAllQuestions()) {
             if (questions.getDifficulty().equals(Difficulty.MEDIUM)) {
                 count++;
             }
@@ -48,7 +48,7 @@ public class QuestionTest {
     @Test
     public void testGetDifficultyCount_shouldReturnCount_whenHardDifficultyCalled() {
         int count = 0;
-        for (Question questions : db.getRandomFromDB()) {
+        for (Question questions : db.getAllQuestions()) {
             if (questions.getDifficulty().equals(Difficulty.HARD)) {
                 count++;
             }
@@ -59,7 +59,7 @@ public class QuestionTest {
     @Test
     public void testCheckAnswer_shouldNotBeZero_whenAskedIfEqualsToA() {
         int count = 0;
-            for (Question questions : db.getRandomFromDB()) {
+            for (Question questions : db.getAllQuestions()) {
                    if(questions.getAnswer().equals("A")) {
                        count++;
                    }
@@ -70,7 +70,7 @@ public class QuestionTest {
     @Test
     public void testCheckAnswer_shouldNotBeZero_whenAskedIfEqualsToB() {
         int count = 0;
-        for (Question questions : db.getRandomFromDB()) {
+        for (Question questions : db.getAllQuestions()) {
             if(questions.getAnswer().equals("B")) {
                 count++;
             }
@@ -81,7 +81,7 @@ public class QuestionTest {
     @Test
     public void testCheckAnswer_shouldNotBeZero_whenAskedIfEqualsToC() {
         int count = 0;
-        for (Question questions : db.getRandomFromDB()) {
+        for (Question questions : db.getAllQuestions()) {
             if(questions.getAnswer().equals("C")) {
                 count++;
             }
@@ -94,7 +94,7 @@ public class QuestionTest {
     @Test
     public void testCheckAnswer_shouldNotBeZero_whenAskedIfEqualsToD() {
         int count = 0;
-        for (Question questions : db.getRandomFromDB()) {
+        for (Question questions : db.getAllQuestions()) {
             if(questions.getAnswer().equals("D")) {
                 count++;
             }
@@ -104,7 +104,7 @@ public class QuestionTest {
 
     @Test
     public void testErrorMessage_shouldReturnErrorMessageAndFalse_whenInvalidInput() {
-        for (Question question : db.getRandomFromDB()) {
+        for (Question question : db.getAllQuestions()) {
             assertEquals(false,question.checkAnswer("!"));
             assertEquals(false,question.checkAnswer("1"));
             assertEquals(false,question.checkAnswer("E"));

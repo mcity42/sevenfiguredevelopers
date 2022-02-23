@@ -14,7 +14,7 @@ public class QuestionDBTest {
 
     @Test
     public void testGetRandomFromDB_shouldReturnRightSize_whenSizeIsCalled() {
-        int size = questionDB.getRandomFromDB().size();
+        int size = questionDB.getAllQuestions().size();
         assertEquals(15,size);
     }
 }

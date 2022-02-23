@@ -2,41 +2,52 @@ package com.sevenfiguredevelopers.controller;
 
 import com.apps.util.Prompter;
 import com.sevenfiguredevelopers.Question;
-import com.sevenfiguredevelopers.QuestionFile;
+import com.sevenfiguredevelopers.QuestionBank;
 import com.sevenfiguredevelopers.User;
 
-import java.util.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 import java.util.Scanner;
 
 public class SevenFigureDeveloperApp {
-    private Boolean isPlaying = false;
+    private boolean isPlaying = true;
     private int maxLevel = 15;
-    User user = new User();
+    private User user = new User();
     private int currentLevel = user.getCurrentLevel();
-    QuestionFile questionFile = new QuestionFile();
-    Prompter prompter = new Prompter(new Scanner(System.in));
+    private QuestionBank questionBank = QuestionBank.getInstance();
+    private Prompter prompter = new Prompter(new Scanner(System.in));
+    private static String welcome;
+    private static String congrats;
+
+
+    public SevenFigureDeveloperApp() {
+        try {
+            welcome = Files.readString(Path.of("data/welcome.txt"));
+            congrats = Files.readString(Path.of("data/congrats.txt"));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public void execute() {
-        System.out.println(" __        ___            __        __          _          _           _                   \n" +
-                " \\ \\      / / |__   ___   \\ \\      / /_ _ _ __ | |_ ___   | |_ ___    | |__   ___     __ _ \n" +
-                "  \\ \\ /\\ / /| '_ \\ / _ \\   \\ \\ /\\ / / _` | '_ \\| __/ __|  | __/ _ \\   | '_ \\ / _ \\   / _` |\n" +
-                "   \\ V  V / | | | | (_) |   \\ V  V / (_| | | | | |_\\__ \\  | || (_) |  | |_) |  __/  | (_| |\n" +
-                "    \\_/\\_/  |_|_|_|\\___/     \\_/\\_/ \\__,_|_| |_|\\__|___/   \\__\\___/   |_.__/ \\___|   \\__,_|\n" +
-                "   |___  | |  ___(_) __ _ _   _ _ __ ___    |  _ \\  _____   _____| | ___  _ __   ___ _ __  \n" +
-                "      / /  | |_  | |/ _` | | | | '__/ _ \\   | | | |/ _ \\ \\ / / _ \\ |/ _ \\| '_ \\ / _ \\ '__| \n" +
-                "     / /   |  _| | | (_| | |_| | | |  __/   | |_| |  __/\\ V /  __/ | (_) | |_) |  __/ |    \n" +
-                "    /_/    |_|   |_|\\__, |\\__,_|_|  \\___|   |____/ \\___| \\_/ \\___|_|\\___/| .__/ \\___|_|    \n" +
-                "                    |___/                                                |_|               ");
+        System.out.println(welcome);
+        System.out.println();
         promptForName();
-        isPlaying = true;
         promptForDifficulty();
-        findNextQuestion();
+        play();
     }
 
     private void promptForName() {
         user.setName(null);
         boolean isValid = false;
-        String input = prompter.prompt("Enter your name: ", "\\w+\\-\\w+\\s\\w+", "Invalid name");
+        String input = prompter.prompt("Enter your name: ");
+        if (input.trim().equals("")) {
+            input = "Player";
+        }
         user.setName(input);
     }
 
@@ -56,23 +67,19 @@ public class SevenFigureDeveloperApp {
         }
     }
 
-    private void findNextQuestion() {
+    private void play() {
         for (int i = 0; i < maxLevel; i++) {
-            for (Question question : questionFile.getRandomFromFile()) {
+            List<Question> questions = questionBank.getAllQuestions();
+            for (Question question : questions) {
                 if (isPlaying) {
                     if (currentLevel > (maxLevel - 1) && (user.getEarnings() >= 1_000_000)) {
                         System.out.println("Your total is: $" + user.getEarnings() + "!! You are a Seven Figure Developer!!");
-                        System.out.println("   _     _    _____    _____ _                         ____                 _                         _   _    _     _  \n" +
-                                "  | |   | |  |___  |  |  ___(_) __ _ _   _ _ __ ___   |  _ \\  _____   _____| | ___  _ __   ___ _ __  | | | |  | |   | | \n" +
-                                " / __) / __)    / /   | |_  | |/ _` | | | | '__/ _ \\  | | | |/ _ \\ \\ / / _ \\ |/ _ \\| '_ \\ / _ \\ '__| | | | | / __) / __)\n" +
-                                " \\__ \\ \\__ \\   / /    |  _| | | (_| | |_| | | |  __/  | |_| |  __/\\ V /  __/ | (_) | |_) |  __/ |    |_| |_| \\__ \\ \\__ \\\n" +
-                                " (   / (   /  /_/     |_|   |_|\\__, |\\__,_|_|  \\___|  |____/ \\___| \\_/ \\___|_|\\___/| .__/ \\___|_|    (_) (_) (   / (   /\n" +
-                                "  |_|   |_|                    |___/                                               |_|                        |_|   |_| ");
+                        System.out.println(congrats);
                         System.out.println("Please restart.");
                         isPlaying = false;
                         break;
                     }
-                    question.askQuestion();
+                    question.ask();
                     promptForAnswer(question);
                     showWinnings(question);
                     promptToContinue();

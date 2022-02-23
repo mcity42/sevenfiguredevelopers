@@ -1,10 +1,15 @@
 package com.sevenfiguredevelopers;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 public class Question {
     private int id;
     private Difficulty difficulty;
     private String questionWithChoice;
     private String answer;
+    private String sorry;
 
     public Question() {
     }
@@ -14,9 +19,15 @@ public class Question {
         this.difficulty = difficulty;
         this.questionWithChoice = questionWithChoice;
         this.answer = answer;
+        try {
+            sorry = Files.readString(Path.of("data/sorry.txt"));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void askQuestion() {
+    public void ask() {
         String questionAndChoice = getQuestionWithChoice();
         String[] parts = questionAndChoice.split("\\(");
         String question = parts[0];
@@ -35,7 +46,9 @@ public class Question {
             System.out.println("This question was worth: $" + this.getDifficulty().getDollarAmount());
             isCorrect = true;
         } else if (!(this.getAnswer().equals(answer))) {
-            System.out.println("\nOuch! Good try but the correct answer is " + this.getAnswer());
+            System.out.println("\nOuch! Good try but the correct answer is " + this.getAnswer() + "\n");
+            System.out.println(sorry);
+            System.out.println();
         }
         return isCorrect;
     }

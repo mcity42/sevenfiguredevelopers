@@ -30,7 +30,6 @@ public class SevenFigureDeveloperApp {
         catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void execute() {

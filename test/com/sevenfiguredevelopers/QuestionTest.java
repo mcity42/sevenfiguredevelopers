@@ -1,12 +1,11 @@
 package com.sevenfiguredevelopers;
 
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class QuestionTest extends TestCase {
+public class QuestionTest {
     private Question question;
     private QuestionDB db;
 
@@ -15,8 +14,6 @@ public class QuestionTest extends TestCase {
         question = new Question();
         db = new QuestionDB();
     }
-
-
 
     @Test
     public void testAnswerInput_shouldReturnDifficulty_whenGetDifficultyIsCalled() {
@@ -90,8 +87,6 @@ public class QuestionTest extends TestCase {
         assertTrue(count != 0);
     }
 
-
-
     @Test
     public void testCheckAnswer_shouldNotBeZero_whenAskedIfEqualsToD() {
         int count = 0;
@@ -111,5 +106,4 @@ public class QuestionTest extends TestCase {
             assertEquals(false,question.checkAnswer("E"));
         }
     }
-
 }

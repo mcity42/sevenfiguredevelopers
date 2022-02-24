@@ -4,13 +4,21 @@ import com.apps.util.Prompter;
 import com.sevenfiguredevelopers.Question;
 import com.sevenfiguredevelopers.QuestionBank;
 import com.sevenfiguredevelopers.User;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
 
+
+/**
+ *  Manages the flow control of the application
+ *  Provides the in-game prompts to set name, answer questions,
+ *  and continue playing.
+ *
+ * @author Malik City
+ * @version 1.0
+ */
 public class SevenFigureDeveloperApp {
     private boolean isPlaying = true;
     private int maxLevel = 15;
@@ -41,8 +49,6 @@ public class SevenFigureDeveloperApp {
     }
 
     private void promptForName() {
-        user.setName(null);
-        boolean isValid = false;
         String input = prompter.prompt("Enter your name: ");
         if (input.trim().equals("")) {
             input = "Player";
@@ -52,7 +58,8 @@ public class SevenFigureDeveloperApp {
 
     private void promptForDifficulty() {
         int difficulty;
-        String input = prompter.prompt("Select 1 for easy, 2 for intermediate, 3 for hard: ", "1|2|3", "Invalid selection");
+        System.out.println("Easy = 5 Questions, Medium = 10 Questions, Hard = 15 Questions");
+        String input = prompter.prompt("Select 1 for easy, 2 for medium, 3 for hard: ", "1|2|3", "Invalid selection");
         difficulty = Integer.parseInt(input);
         switch (difficulty) {
             case 1:
@@ -66,11 +73,18 @@ public class SevenFigureDeveloperApp {
         }
     }
 
+    /**
+     *  Operates the in-game functionalities by iterating
+     *  through the given list of Questions from the QuestionBank,
+     *  prompts user for answer, shows winnings if correct, and prompts
+     *  user to continue playing
+     */
     private void play() {
         for (int i = 0; i < maxLevel; i++) {
             List<Question> questions = questionBank.getAllQuestions();
             for (Question question : questions) {
                 if (isPlaying) {
+                    // if the max level is reached and user is above $1M , the game is terminated
                     if (currentLevel > (maxLevel - 1) && (user.getEarnings() >= 1_000_000)) {
                         System.out.println("Your total is: $" + user.getEarnings() + "!! You are a Seven Figure Developer!!");
                         System.out.println(congrats);

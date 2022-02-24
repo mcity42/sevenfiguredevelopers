@@ -4,6 +4,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/**
+ *  Gives the definition of the Question objects to be asked during the game
+ *  Instantiated by the implementation classes of {@code QuestionBank}
+ *
+ * @author Shi-Tian Liu
+ * @version 1.0
+ */
 public class Question {
     private int id;
     private Difficulty difficulty;
@@ -38,6 +45,11 @@ public class Question {
         System.out.println(question + "\n" + choice1 + "\n" + choice2 + "\n" + choice3 + "\n" + choice4);
     }
 
+    /**
+     * Validates the correctness of the user's answer to each question
+     * @param answer
+     * @return boolean True if the answer is correct or False if incorrect
+     */
     public boolean checkAnswer(String answer) {
         boolean isCorrect = false;
         if (this.getAnswer().equals(answer)) {

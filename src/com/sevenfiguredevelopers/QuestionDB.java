@@ -4,7 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
+/**
+ *  Manages {@code Question} inventory. Implementation class of
+ *  {@code QuestionBank} interface, hard-coded in memory source
+ *  of Question objects.
+ *
+ * @author Jamal Hawkins and Shi-Tian Liu
+ * @version 1.0
+ */
 public class QuestionDB implements QuestionBank{
     private List<Question> questionDatabase = new ArrayList<>(List.of(
             // id     difficulty     question         answer
@@ -60,6 +67,10 @@ public class QuestionDB implements QuestionBank{
                     " (b) Dennis Ritchie \n (c) James Gosling \n (d) Bjarne Stroustroup", "C")
     ));
 
+    /**
+     * @return shuffled list of {@code Question} objects from
+     * the in memory source
+     */
     public List<Question> getAllQuestions() {
         Collections.shuffle(questionDatabase);
         return questionDatabase;

@@ -1,5 +1,12 @@
 package com.sevenfiguredevelopers;
 
+/**
+ *  Defines the in-game user object with a name, earnings
+ *  and currentLevel. Used to track current user's progress
+ *
+ * @author Jamal Hawkins
+ * @version 1.0
+ */
 public class User {
     private String name;
     private int earnings;
